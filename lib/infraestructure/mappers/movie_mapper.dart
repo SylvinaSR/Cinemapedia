@@ -2,6 +2,7 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/infraestructure/models/moviedb/movie_moviedb.dart';
 
 class MovieMapper {
+
   static Movie movieDbToEntity(MovieMovieDB movieDb) => Movie(
     adult: movieDb.adult,
     backdropPath: movieDb.backdropPath != ''
@@ -15,11 +16,12 @@ class MovieMapper {
     popularity: movieDb.popularity,
     posterPath: movieDb.posterPath != ''
         ? 'https://image.tmdb.org/t/p/w500/${movieDb.posterPath}'
-        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8PgItrmj9SWhclDBAmjlyFsC4w9tEKTcvDTbc2puQtQ&s',
+        : 'no-poster',
     releaseDate: movieDb.releaseDate,
     title: movieDb.title,
     video: movieDb.video,
     voteAverage: movieDb.voteAverage,
     voteCount: movieDb.voteCount,
   );
+  
 }
