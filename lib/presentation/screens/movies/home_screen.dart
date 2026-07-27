@@ -39,17 +39,8 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
     if (nowPlayingMovies.isEmpty) return CircularProgressIndicator();
     return Column(
       children: [
-        CustomAppbar(),
-        Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: nowPlayingMovies.length,
-            itemBuilder: (context, index) {
-              final movie = nowPlayingMovies[index];
-              return ListTile(title: Text(movie.title));
-            },
-          ),
-        ),
+        const CustomAppbar(),
+        MoviesSlideshow(movies: nowPlayingMovies,)
       ],
     );
   }
