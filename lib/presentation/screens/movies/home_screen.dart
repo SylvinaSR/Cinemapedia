@@ -35,12 +35,13 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
-    if (nowPlayingMovies.isEmpty) return CircularProgressIndicator();
+    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final slideshowMovies = ref.watch(moviesSlideshowProvider);
+    if (slideshowMovies.isEmpty) return CircularProgressIndicator();
     return Column(
       children: [
         const CustomAppbar(),
-        MoviesSlideshow(movies: nowPlayingMovies,)
+        MoviesSlideshow(movies: slideshowMovies),
       ],
     );
   }
