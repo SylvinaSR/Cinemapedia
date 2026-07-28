@@ -10,7 +10,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _HomeVIew());
+    return Scaffold(
+      body: _HomeVIew(),
+      bottomNavigationBar: CustomBottomNavigation(),
+    );
   }
 }
 
@@ -37,7 +40,6 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
   Widget build(BuildContext context) {
     // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideshowMovies = ref.watch(moviesSlideshowProvider);
-    if (slideshowMovies.isEmpty) return CircularProgressIndicator();
     return Column(
       children: [
         const CustomAppbar(),
