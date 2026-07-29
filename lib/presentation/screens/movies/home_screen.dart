@@ -30,6 +30,8 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upComingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -42,6 +44,8 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideshowMovies = ref.watch(moviesSlideshowProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final upcomingMovies = ref.watch(upComingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
 
     return CustomScrollView(
       slivers: [
@@ -73,25 +77,25 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
                       .loadNextPage(),
                 ),
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: upcomingMovies,
                   title: 'Proximamente',
                   subTitle: 'Martes 28',
                   loadNextPage: () => ref
-                      .read(nowPlayingMoviesProvider.notifier)
+                      .read(upComingMoviesProvider.notifier)
                       .loadNextPage(),
                 ),
                 MovieHorizontalListview(
-                  movies: nowPlayingMovies,
+                  movies: topRatedMovies,
                   title: 'Mejor calificadas',
                   subTitle: 'Las mejores',
                   loadNextPage: () => ref
-                      .read(nowPlayingMoviesProvider.notifier)
+                      .read(topRatedMoviesProvider.notifier)
                       .loadNextPage(),
                 ),
                 SizedBox(height: 20),
               ],
             );
-          }, childCount: 2),
+          }, childCount: 1),
         ),
       ],
     );
