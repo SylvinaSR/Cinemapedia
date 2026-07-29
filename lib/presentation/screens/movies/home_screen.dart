@@ -47,6 +47,8 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
     final upcomingMovies = ref.watch(upComingMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
 
+    return const FullScreenLoader();
+
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -72,25 +74,22 @@ class _HomeVIewState extends ConsumerState<_HomeVIew> {
                 MovieHorizontalListview(
                   movies: popularMovies,
                   title: 'Populares',
-                  loadNextPage: () => ref
-                      .read(popularMoviesProvider.notifier)
-                      .loadNextPage(),
+                  loadNextPage: () =>
+                      ref.read(popularMoviesProvider.notifier).loadNextPage(),
                 ),
                 MovieHorizontalListview(
                   movies: upcomingMovies,
                   title: 'Proximamente',
                   subTitle: 'Martes 28',
-                  loadNextPage: () => ref
-                      .read(upComingMoviesProvider.notifier)
-                      .loadNextPage(),
+                  loadNextPage: () =>
+                      ref.read(upComingMoviesProvider.notifier).loadNextPage(),
                 ),
                 MovieHorizontalListview(
                   movies: topRatedMovies,
                   title: 'Mejor calificadas',
                   subTitle: 'Las mejores',
-                  loadNextPage: () => ref
-                      .read(topRatedMoviesProvider.notifier)
-                      .loadNextPage(),
+                  loadNextPage: () =>
+                      ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
                 ),
                 SizedBox(height: 20),
               ],
