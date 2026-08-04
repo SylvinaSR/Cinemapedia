@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helper/human_format.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieHorizontalListview extends StatefulWidget {
   final List<Movie> movies;
@@ -87,12 +88,12 @@ class _Title extends StatelessWidget {
         children: [
           Text(title != null ? '$title' : '', style: titleStyle),
           const Spacer(),
-          if(subtitle != null) 
-          FilledButton.tonal(
-            style: const ButtonStyle(visualDensity: VisualDensity.compact),
-            onPressed: () {},
-            child: Text('$subtitle'),
-          ),
+          if (subtitle != null)
+            FilledButton.tonal(
+              style: const ButtonStyle(visualDensity: VisualDensity.compact),
+              onPressed: () {},
+              child: Text('$subtitle'),
+            ),
         ],
       ),
     );
@@ -128,7 +129,7 @@ class _Slide extends StatelessWidget {
                   if (loadingProgress != null) {
                     return const CircularProgressIndicator(strokeWidth: 2);
                   }
-                  return FadeIn(child: child);
+                  return GestureDetector(child: FadeIn(child: child), onTap: () => context.push('/movie/${movie.id}'),);
                 },
               ),
             ),
