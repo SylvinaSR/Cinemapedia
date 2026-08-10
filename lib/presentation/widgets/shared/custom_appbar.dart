@@ -25,20 +25,18 @@ class CustomAppbar extends ConsumerWidget {
               const SizedBox(width: 5),
               Text('Cinemapedia', style: titleStlye),
               const Spacer(),
+
               IconButton(
                 onPressed: () {
-                  final movieRepository = ref.read(movieRepositoryProvider);
+
+                  //final movieRepository = ref.read(movieRepositoryProvider);
                   final searchQuery = ref.read(searchQueryProvider);
+
                   showSearch<Movie?>(
                     query: searchQuery,
                     context: context,
                     delegate: SearchMovieDelegate(
-                      searchMovieCallback: (query) {
-                        ref
-                            .read(searchQueryProvider.notifier)
-                            .update((state) => query);
-                        return movieRepository.searchMovies(query);
-                      },
+                      searchMovieCallback: ref.read(searchedMoviesProvider.notifier).searchMoviesByQuery
                     ),
                   ).then((movie) {
                     if (movie == null) return;
@@ -49,6 +47,7 @@ class CustomAppbar extends ConsumerWidget {
                 },
                 icon: Icon(Icons.search),
               ),
+
             ],
           ),
         ),
