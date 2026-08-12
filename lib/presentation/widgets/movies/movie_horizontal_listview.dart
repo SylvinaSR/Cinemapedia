@@ -129,7 +129,7 @@ class _Slide extends StatelessWidget {
                   if (loadingProgress != null) {
                     return const CircularProgressIndicator(strokeWidth: 2);
                   }
-                  return GestureDetector(child: FadeIn(child: child), onTap: () => context.push('/movie/${movie.id}'),);
+                  return GestureDetector(child: FadeIn(child: child), onTap: () => context.push('/home/0/movie/${movie.id}'),); // el /home/0 define la ruta padre
                 },
               ),
             ),
