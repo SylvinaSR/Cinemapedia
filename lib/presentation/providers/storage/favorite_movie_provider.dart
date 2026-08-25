@@ -13,4 +13,21 @@ class StorageMovieNotifier extends StateNotifier<Map<int, Movie>> {
   final LocalStorageRepository localStorageRepository;
 
   StorageMovieNotifier({required this.localStorageRepository}) : super({});
+
+  Future<void> toggleFavoriteMovie(Movie movie) async {
+    final isFavorite = await localStorageRepository.isFavoriteMovie(movie.id);
+    print('IsFavorite: $isFavorite');
+    await localStorageRepository.toggleFavoriteMovie(movie);
+
+    if (isFavorite) {
+      state.remove(movie.id);
+      state = {...state}; //Actualizar Widget
+      return;
+    }
+
+    state = {
+      ...state,
+      movie.id: movie,
+    }; //Agrega la pelicula con el id y la pelicula
+  }
 }
