@@ -1,4 +1,5 @@
 import 'package:cinemapedia/presentation/providers/storage/favorite_movie_provider.dart';
+import 'package:cinemapedia/presentation/widgets/movies/movies_masonry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,13 +22,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
     final favoriteMovies = ref.watch(favoriteMoviesProvider);
     final myMovieList = favoriteMovies.values.toList();
     return Scaffold(
-      body: ListView.builder(
-        itemCount: favoriteMovies.keys.length,
-        itemBuilder: (context, index) {
-          final movie = myMovieList[index];
-          return ListTile(title: Text(movie.title));
-        },
-      ),
+        body: MoviesMasonry(movies: myMovieList)
     );
   }
 }
